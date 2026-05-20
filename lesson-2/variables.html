@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Variables | COMP1073 Client-Side JavaScript</title>
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+	<h1>Variables</h1>
+	<p>JavaScript can store data in variables of different types. Let's learn how to declare, initialize, and update variables properly. We'll also investigate the different types of JavaScript variables.</p>
+	<script>
+		/* STEP 1: Declare variables
+		Use a-z, 0-9, A-Z and underscores, avoiding reserved names
+		All program variables are generally declared at the beginning */
+		let myName;
+		let myAge;
+
+		/* STEP 2: Initialize variables
+		Don't confuse a variable with no value with one that doesn't exist at all */
+		myName = "Scott";
+		myAge = 55;
+
+		/* STEP 3: Updating variables
+		Once a variable has been declared, this can be done any time */
+		myName = "James";
+
+		const homeTown = "Orillia";
+
+		// STEP 4: Variable types (use typeof in the console)
+		// Numbers
+		let numCars = 5;
+		// Strings (use '' or "")
+		let manufacturer = `Honda`;
+		// Booleans
+		let iAmTired = true;
+		// Arrays
+		let myNameArray = ["Scott", "James", "Craig"];
+		let myMixedArray = ["Scott", 55, false, myNameArray];
+		// Objects
+		let myDog = {
+			name: "Rufus",
+			breed: "mutt",
+			size: "medium",
+			age: 7
+		}
+		// STEP 5: Typing (JavaScript is a loosely-typed language)
+		console.log(typeof(myDog));
+		numCars = "five";
+		
+	</script>
+</body>
+</html>
