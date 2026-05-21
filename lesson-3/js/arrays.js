@@ -1,63 +1,47 @@
-const output = document.querySelector('body p:nth-of-type(2)');
-
-/* STEP 1: Creating an array
-When declaring and initializing an array, you can include strings, numbers, booleans, and even other arrays */
-// let myArray = new Array;
-let myArray = ["string", true, 100, [5, "hello"]];
-
-/* STEP 2: Reading and changing array elements
-You can refer to a particular element in an array with it's index number */
-myArray[1] = false;
-myArray[3][0] = 6;
-output.textContent = `The 3rd element in the array is ${String(myArray[2])}, which is a ${typeof(myArray[2])}!`;
-// output.textContent = "The 3rd element in the array is " + String(myArray[2]) + ", which is a " + typeof(myArray[2]) + "!";
-
-// You can also change a particular element
-myArray[3][1] = true;
-console.log(`The 2nd element of the 4th element of the array is ${myArray[3][1]}.`);
-// An array within an array is called a multidimensional array - it can be accessed by specifying the index of the first array, then the item within it
-/* STEP 3: Determining array length
-Being able to figure out how many elements are contained in an array is a critical feature of JavaScript programming */
-output.textContent = `myArray has ${myArray[3].length} elements inside of it.`;
-output.textContent = "";
-// In particular, looping through arrays
-for (let i = 0; i < myArray.length; i ++) {
-    // Check to see if element is an array
-    if (Array.isArray(myArray[i].isArray)) {
-        for (let j = 0; j < myArray[i].length; j ++) {
-            output.textContent += `${myArray[i][j]}, `;
-        }
-    } else {
-        output.textContent += `${myArray[i]}, `;
-    }
-}
-/* STEP 4: Convert a string to an array
-If there is a common character that can act as a delimiter in a string, we can use this character to create an array */
-let orig6 = "Toronto Maple Leafs, Chicago Blackhawks, Detroit Red Wings, Boston Bruins, Montréal Canadiens, New York Rangers";
-let orig6Array = orig6.split(", ");
-// Output one of the array items
-output.textContent = orig6Array[4];
-// Output the last element of the array
-output.textContent = `The last team in the array is ${orig6Array.at(-1)}.`
-/* STEP 5: Convert an array back to a string
-Use join() and toString() - note that join() allows you to choose and insert a delimiter, while toString() does not */
-// let orig6String = orig6Array.toString();
-let orig6String = orig6Array.join(" / ");
-/* STEP 6: Adding and removing items from an array
-Without the ability to edit the contents of an array, this type of variable would have limited use - but adding and removing array items is pretty straightforward */
-
-// Adding one or more items to an array with push()
-
-// If you would like to capture how many elements are in the array after you have edited it, then…
-let numItems = orig6Array.push("Buffalo Sabres", "New York Islanders");
-
-// Removing an item from an array with pop()
-let itemRemoved = orig6Array.pop();
-// pop() returns the item that was removed, rather than the length of the updated array, so…
-
-// To do the same thing, that is, to add and remove an item from the beginning of the array, use shift() and unshift()
-let removedItem = orig6Array.shift();
-numItems = orig6Array.unshift("Winnipeg Jets", "Québec Nordiques");
-// We can also modify the array contents by deleting or substituting elements, or inserting one or more elements at a certain place with splice()
-orig6Array.splice(3, 1, "Edmonton Oilers", "Florida Panthers");
-/* That's it for the basics of working with arrays! With these tools at your disposal, a whole new world of possibilities with JavaScript are at your command */
+// STEP 1: Declare and initialize variables
+// STEP 1a: Grab the parts of the DOM that we need to build the invoice
+const productList = document.querySelector("tbody");
+const totalData = document.querySelector("tfoot td:first-of-type");
+// STEP 1b: Build the products array in the format 'Product Name:0.00'
+let products = [
+	"Frozen Pizza: 5.99",
+	"Orange Juice: 4.99",
+	"Milk: 6.95",
+	"Dozen Eggs: 5.95",
+	"Bacon: 7.49",
+	"Apples: 4.99"
+];
+// STEP 1c: Set up invoiceTotal variable - start at zero
+let invoiceTotal = 0;
+// STEP 1d: Declare the itemRow and the itemDetail array;
+let itemRow = new Array();
+let itemDetail = new Array();
+let itemDesc;
+let itemPrice;
+let counter = 0;
+// STEP 2: Build a loop to iterate through the products array
+products.forEach((product) => {
+	// STEP 3: Break apart the product name from the price for each item with split()
+	product = product.split(": ");
+	// console.log(product);
+	// STEP 4: Now we have an array as an element of an array - set the second array element to the product price (as type number)
+	product[1] = Number(product[1]);
+	// console.log(product[1]);
+	// STEP 5: Add the price of this product to the invoice total
+	invoiceTotal += product[1];
+	// console.log(invoiceTotal);
+	// STEP 6: Capture each product name and price as variables 
+	itemDesc = product[0];
+	itemPrice = product[1];
+	// STEP 7: Create a TR element for this product and price in the invoice table
+	itemRow[counter] = document.createElement("tr");
+	// STEP 8: Build the string that contains two TD elements each containing one of the item description, and the item price
+	itemDetail[counter] = `<td>${itemDesc}</td><td>$ ${itemPrice}</td>`;
+	// STEP 9: Set the above string as the innerHTML of the new TR element, and then append the new element to the table body (var productList)
+	itemRow[counter].innerHTML = itemDetail[counter];
+	// console.log(itemRow);
+	productList.append(itemRow[counter]);
+	counter ++;
+});
+// STEP 10: Set the total cost of the invoice as the textContent of the TD in the TFOOT (var totalData), rounding the number to two decimal places
+totalData.textContent = "$ " + invoiceTotal.toFixed(2);
