@@ -4,24 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>See 'N' Say Storymaker</title>
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
+  <!-- Main toy wrap -->
   <div class="toy-frame">
 
+    <!-- Page title -->
     <h1 class="toy-title">&#10022; See 'N' Say Storymaker &#10022;</h1>
 
+    <!-- word columns on the left, controls on the right -->
     <div class="toy-body">
 
+      <!-- Left panel: word columns and preview row  -->
       <div class="left-panel">
         <div class="columns-wrapper" id="columnsWrapper"></div>
-        <div class="preview-row" id="previewRow"></div>
+        <div class="preview-row"    id="previewRow"></div>
       </div>
 
+      <!-- Right panel: mascot and action buttons -->
       <div class="right-panel">
 
+        <!-- coloured dots across the top  -->
         <div class="color-dots">
           <div class="dot" style="background:#ef4444;"></div>
           <div class="dot" style="background:#22c55e;"></div>
@@ -30,20 +37,26 @@
           <div class="dot" style="background:#ec4899;"></div>
         </div>
 
+        <!-- Mascot  -->
         <div class="mascot-area">
           <div class="mascot-emoji">&#128027;</div>
           <div class="mascot-label">Wormy</div>
         </div>
 
+        <!-- Action buttons -->
         <div class="action-btns">
+          <!-- Combines the 5 selected words into a sentence -->
           <button class="btn-action btn-tell"   onclick="tellStory()">&#128214; Tell My Story!</button>
+          <!-- Picks random words for all 5 columns -->
           <button class="btn-action btn-random" onclick="randomStory()">&#127922; Random Story</button>
+          <!-- Resets all columns back to their first word -->
           <button class="btn-action btn-reset"  onclick="resetAll()">&#8635; Reset</button>
         </div>
 
       </div>
     </div>
 
+    <!-- Story output area -->
     <div class="story-output">
       <span id="storyDisplay" class="story-placeholder">
         Click each column to pick your words, then press &ldquo;Tell My Story!&rdquo;
@@ -52,6 +65,7 @@
 
   </div>
 
+  <!-- Load the JavaScript file last so the HTML is ready before the script runs -->
   <script src="script.js"></script>
 
 </body>

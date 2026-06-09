@@ -1,0 +1,248 @@
+/* Removes default browser margin, padding, and makes
+   borders included in element width/height calculations */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 
+   Yellow background, centres the toy card on the screen */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fde68a;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 
+   The yellow rounded card that wraps everything */
+.toy-frame {
+  background: #f5c842;
+  border-radius: 20px;
+  border: 5px solid #c8960a;
+  padding: 20px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.toy-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #7a4f00;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+/* 
+   Puts the left panel and right panel side by side */
+.toy-body {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/*
+   White box that holds the 5 word columns */
+.left-panel {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 3px solid #c8960a;
+  padding: 12px 10px;
+  flex: 1; /* takes up all remaining space */
+}
+
+/* 
+   5 equal-width columns side by side */
+.columns-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+/* Single column - stacks number, button, and label vertically */
+.word-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Numbered circle at the top of each column */
+.col-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+/* The clickable word button inside each column */
+.word-btn {
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  padding: 8px 4px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.3;
+  min-height: 48px;
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+/* Darken slightly on hover */
+.word-btn:hover  { filter: brightness(0.92); }
+/* Scale down slightly when clicked */
+.word-btn:active { transform: scale(0.94); }
+
+/* Small role label below each button */
+.col-label {
+  font-size: 9px;
+  color: #666666;
+  text-align: center;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* 
+   Shows the currently selected word from each column */
+.preview-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+/* Individual preview chip */
+.preview-chip {
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 3px;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+  line-height: 1.3;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 
+   Fixed-width column holding the mascot and buttons */
+.right-panel {
+  width: 130px;
+  flex-shrink: 0; /* never shrinks when the page is narrow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Decorative coloured dots row */
+.color-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Mascot box */
+.mascot-area {
+  background: #fff8dc;
+  border-radius: 10px;
+  border: 2px solid #c8960a;
+  width: 100%;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.mascot-emoji {
+  font-size: 38px;
+  line-height: 1;
+}
+
+.mascot-label {
+  font-size: 10px;
+  font-weight: bold;
+  color: #7a4f00;
+  margin-top: 4px;
+}
+
+/* Stacks the three action buttons vertically */
+.action-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Shared styles for all three action buttons */
+.btn-action {
+  padding: 9px 6px;
+  border-radius: 8px;
+  border: 3px solid rgba(0, 0, 0, 0.15);
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.1s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.btn-action:hover  { filter: brightness(1.1); }
+.btn-action:active { transform: scale(0.95); }
+
+/* Individual button colours */
+.btn-tell   { background: #ef4444; color: #ffffff; } /* red */
+.btn-random { background: #8b5cf6; color: #ffffff; } /* purple */
+.btn-reset  { background: #6b7280; color: #ffffff; } /* grey */
+
+/* 
+   The box at the bottom that shows the finished sentence */
+.story-output {
+  background: #fffbeb;
+  border-radius: 12px;
+  border: 3px solid #c8960a;
+  padding: 14px 16px;
+  margin-top: 14px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Style when the story is showing */
+.story-text {
+  font-size: 17px;
+  font-weight: bold;
+  color: #1f2937;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Style when showing the placeholder hint */
+.story-placeholder {
+  font-size: 13px;
+  color: #9ca3af;
+  font-style: italic;
+}
