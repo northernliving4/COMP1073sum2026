@@ -5,7 +5,7 @@
    works out of the box, but it is rate-limited to ~30
    requests/hour/IP, so a personal key is recommended.
    --------------------------------------------------------- */
-const NASA_API_KEY = "DEMO_KEY"; // <-- replace with your own key
+const NASA_API_KEY = "smfvSRQtSEhRVeMfjSxaLQeC7L9KS4ylLyZqP4vl";
 const APOD_ENDPOINT = "https://api.nasa.gov/planetary/apod";
 
 /* Student Info */
@@ -59,7 +59,13 @@ function initStarfield() {
 
 /* Date Helper */
 function formatDate(d) {
-  return d.toISOString().split("T")[0]; // YYYY-MM-DD, required by APOD API
+  // Build YYYY-MM-DD from LOCAL date parts (not toISOString, which
+  // converts to UTC first and can shift the date by a day depending
+  // on the user's timezone).
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 function randomDateSince1995() {
