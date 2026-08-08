@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astro Deck | NASA APOD Explorer</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+ 
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+
+  <canvas id="starfield"></canvas>
+
+  <!-- header  -->
+  <header class="hero">
+    <p class="eyebrow">NASA Open APIs &middot; Astronomy Picture of the Day</p>
+    <h1 class="hero-title">ASTRO&nbsp;DECK</h1>
+    <p class="hero-sub">A daily transmission from NASA's picture archive — pick a date, pull the image, read the mission notes.</p>
+
+    <!-- Student info  -->
+    <div id="student-info"></div>
+  </header>
+
+  <!--  controls  -->
+  <section class="controls" aria-label="Query controls">
+    <div class="control-group">
+      <label for="apod-date">Choose a date</label>
+      <input type="date" id="apod-date">
+    </div>
+
+    <button id="fetch-today" class="btn btn-primary">Today's Picture</button>
+    <button id="fetch-random" class="btn btn-ghost">Random Date</button>
+
+    <div class="control-group range-group">
+      <label for="range-days">Build a gallery (last N days)</label>
+      <select id="range-days">
+        <option value="6">6 days</option>
+        <option value="8" selected>8 days</option>
+        <option value="12">12 days</option>
+      </select>
+      <button id="fetch-gallery" class="btn btn-outline">Load Gallery</button>
+    </div>
+  </section>
+
+  <!--  Featured Card  -->
+  <section id="featured" class="featured" aria-live="polite">
+    <!-- Featured APOD card is rendered here by script.js -->
+    <p class="placeholder">Loading today's picture from NASA...</p>
+  </section>
+
+  <!--  Gallery Grid  -->
+  <section class="gallery-wrap">
+    <h2 class="section-title">Recent Transmissions</h2>
+    <div id="gallery" class="gallery">
+      <!-- Gallery cards are injected here by script.js -->
+    </div>
+  </section>
+
+  <!-- Full Image View  -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!--  Footer  -->
+  <footer class="site-footer">
+    <p>
+      Built for Assignment 3 &mdash; Third-Party APIs. Powered by the
+      <a href="https://api.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA APOD API</a>.
+    </p>
+    <p class="doc-link">
+      Tutorial / documentation followed:
+      <a href="https://api.nasa.gov/#apod" target="_blank" rel="noopener noreferrer">
+        https://api.nasa.gov/#apod
+      </a>
+    </p>
+  </footer>
+
+</body>
+</html>
