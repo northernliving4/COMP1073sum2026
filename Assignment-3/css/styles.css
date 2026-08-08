@@ -1,3 +1,5 @@
+
+
 /*  Design tokens  */
 :root {
   --bg: #0a0b14;
@@ -58,8 +60,7 @@ html, body {
   background: var(--nebula);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: var(--violet); /* fallback shown if gradient clipping isn't supported */
+  color: transparent;
 }
 
 .hero-sub {

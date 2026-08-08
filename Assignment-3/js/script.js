@@ -10,8 +10,8 @@ const APOD_ENDPOINT = "https://api.nasa.gov/planetary/apod";
 
 /* Student Info */
 function renderStudentInfo() {
-  const studentId = "N01234567";       // <-- replace with student ID
-  const studentName = "Jordan Smith";  // <-- replace with name
+  const studentId = "N01234567";       // <-- replace with your student ID
+  const studentName = "Jordan Smith";  // <-- replace with your name
 
   const p = document.createElement("p");
   p.textContent = `${studentName} — Student ID: ${studentId}`;
@@ -59,13 +59,7 @@ function initStarfield() {
 
 /* Date Helper */
 function formatDate(d) {
-  // Build YYYY-MM-DD from LOCAL date parts (not toISOString, which
-  // converts to UTC first and can shift the date by a day depending
-  // on the user's timezone).
-  const year = d.getFullYear();
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return d.toISOString().split("T")[0]; // YYYY-MM-DD, required by APOD API
 }
 
 function randomDateSince1995() {
